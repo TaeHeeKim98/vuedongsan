@@ -1,57 +1,58 @@
 <template>
-
   <div class="black-bg" v-if="modal">
     <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용 &nbsp;&nbsp;
-        <span id="close" @click="modal_close()" style="cursor: pointer;">close</span>
+      <h4 value=""></h4>
+      <p>
+        상세페이지 내용 &nbsp;&nbsp;
+        <span id="close" @click="modal_close()" style="cursor: pointer"
+          >close</span
+        >
       </p>
     </div>
   </div>
 
   <div class="menu">
     <a href="" v-for="menu in menus" :key="menu">
-      {{ menu }} 
+      {{ menu }}
     </a>
   </div>
 
   <div :key="index" v-for="(item, index) in products">
-    <img :src="products[index].image" alt="" class="img">
-    <h4 @click="modal_open()" style="cursor: pointer;">{{ products[index].title }}</h4>
-    <p>{{ products[index].content }}</p>
-    <p>가격 : {{ products[index].price }}원</p>
+    <img :src="item.image" alt="" class="img" />
+    <h4 @click="modal_open()" style="cursor: pointer">
+      {{ item.title }}
+    </h4>
+    <p>{{ item.content }}</p>
+    <p>가격 : {{ item.price }}원</p>
   </div>
-
 </template>
 
 <script>
-
-import datas from './assets/data.js';
+import datas from "./assets/data.js";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      products : datas,
-      menus : ['Home','Shop','About'],
-      modal : false
-    }
+      products: datas,
+      menus: ["Home", "Shop", "About"],
+      modal: false,
+      title: "",
+    };
   },
-  components: {
-    
-  },
-  methods : {
+  components: {},
+  methods: {
     increase(idx) {
       this.num[idx] += 1;
     },
     modal_open() {
-      this.modal = true
+      this.modal = true;
     },
     modal_close() {
-      this.modal = false
-    }
-  }
-}
+      this.modal = false;
+    },
+  },
+};
 </script>
 
 <style>
@@ -88,15 +89,17 @@ div {
 }
 
 .black-bg {
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  position: fixed; padding: 20px;
-}
-
-.white-bg {
-  width: 100%; background: white;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
   padding: 20px;
 }
 
+.white-bg {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
 </style>
